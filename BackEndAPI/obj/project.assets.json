@@ -88,6 +88,29 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "BackEndAPI.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/BackEndAPI.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BackEndAPI.Core.dll": {}
+        }
+      },
+      "BackEndAPI.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "BackEndAPI.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BackEndAPI.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BackEndAPI.Service.dll": {}
+        }
       }
     }
   },
@@ -420,10 +443,21 @@
         "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "BackEndAPI.Core/1.0.0": {
+      "type": "project",
+      "path": "../BackEndAPI.Core/BackEndAPI.Core.csproj",
+      "msbuildProject": "../BackEndAPI.Core/BackEndAPI.Core.csproj"
+    },
+    "BackEndAPI.Service/1.0.0": {
+      "type": "project",
+      "path": "../BackEndAPI.Service/BackEndAPI.Service.csproj",
+      "msbuildProject": "../BackEndAPI.Service/BackEndAPI.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "BackEndAPI.Service >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -451,7 +485,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
+              "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
