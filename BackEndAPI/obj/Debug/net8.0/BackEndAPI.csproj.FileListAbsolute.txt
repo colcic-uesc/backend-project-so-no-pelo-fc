@@ -31,3 +31,7 @@ D:\code\backend-project-so-no-pelo-fc\BackEndAPI\obj\Debug\net8.0\refint\BackEnd
 D:\code\backend-project-so-no-pelo-fc\BackEndAPI\obj\Debug\net8.0\BackEndAPI.pdb
 D:\code\backend-project-so-no-pelo-fc\BackEndAPI\obj\Debug\net8.0\BackEndAPI.genruntimeconfig.cache
 D:\code\backend-project-so-no-pelo-fc\BackEndAPI\obj\Debug\net8.0\ref\BackEndAPI.dll
+D:\code\backend-project-so-no-pelo-fc\BackEndAPI\bin\Debug\net8.0\BackEndAPI.Core.dll
+D:\code\backend-project-so-no-pelo-fc\BackEndAPI\bin\Debug\net8.0\BackEndAPI.Service.dll
+D:\code\backend-project-so-no-pelo-fc\BackEndAPI\bin\Debug\net8.0\BackEndAPI.Service.pdb
+D:\code\backend-project-so-no-pelo-fc\BackEndAPI\bin\Debug\net8.0\BackEndAPI.Core.pdb
