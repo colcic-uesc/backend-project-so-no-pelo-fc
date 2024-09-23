@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IProjectCRUD, ProjectCRUD>();
 builder.Services.AddScoped<IProfessorCRUD, ProfessorCRUD>();
+builder.Services.AddScoped<IStudentCRUD, StudentCRUD>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
