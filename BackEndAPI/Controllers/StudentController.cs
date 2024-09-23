@@ -23,7 +23,7 @@ public class StudentController : ControllerBase
         return _studentCRUD.GetAll();
     }
 
-    [HttpGet("student/{registration}", Name = "GetStudentByRegistration")]
+    [HttpGet("register/{registration}", Name = "GetStudentByRegistration")]
     public ActionResult<Students> Get(string registration)
     {
         var student = _studentCRUD.GetByRegistration(registration);

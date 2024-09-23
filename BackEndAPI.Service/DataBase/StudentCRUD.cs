@@ -9,9 +9,9 @@ public class StudentCRUD : IStudentCRUD
 
     private static readonly List<Students> _studentList = new List<Students>
     {
-        new Students { Id = 1, Registration = "REG001", Name = "Ana Silva", Email = "ana.silva@university.com", Course = "Computer Science", Bio = "Ana is a computer science student interested in AI and machine learning." },
-        new Students { Id = 2, Registration = "REG002", Name = "Marcos Andrade", Email = "marcos.andrade@university.com", Course = "Business Administration", Bio = "Marcos is specializing in finance and business strategy." },
-        new Students { Id = 3, Registration = "REG003", Name = "Leticia Costa", Email = "leticia.costa@university.com", Course = "Mechanical Engineering", Bio = "Leticia is involved in several projects related to renewable energy." }
+        new Students { Id = 1, Registration = "REG001", Name = "Ana Silva", Email = "ana.silva@university.com", Course = "Computer Science", Bio = "Ana is a computer science student interested in AI and machine learning.", Skills = [] },
+        new Students { Id = 2, Registration = "REG002", Name = "Marcos Andrade", Email = "marcos.andrade@university.com", Course = "Business Administration", Bio = "Marcos is specializing in finance and business strategy.", Skills = [] },
+        new Students { Id = 3, Registration = "REG003", Name = "Leticia Costa", Email = "leticia.costa@university.com", Course = "Mechanical Engineering", Bio = "Leticia is involved in several projects related to renewable energy.", Skills = [] }
     };
 
     public void Create(Students entity)
@@ -53,6 +53,7 @@ public class StudentCRUD : IStudentCRUD
         student.Email = entity.Email;
         student.Course = entity.Course;
         student.Bio = entity.Bio;
+        student.Skills = entity.Skills;
     }
 }
 
