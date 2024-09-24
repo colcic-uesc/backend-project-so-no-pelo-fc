@@ -2,6 +2,7 @@ using System;
 using BackEndAPI.Core;
 using BackEndAPI.Service.DataBase.Interfaces;
 
+
 namespace BackEndAPI.Service.DataBase;
 
 public class ProjectCRUD : IProjectCRUD
@@ -9,9 +10,9 @@ public class ProjectCRUD : IProjectCRUD
 
     private static readonly List<Project> _projects = new List<Project>
     {
-        new Project { Id = 1, Title = "Desenvolvimento de Website", Description = "Projeto de criação de um site institucional.", Type = "Web Development", StartDate = new DateTime(2023, 1, 1), EndDate = new DateTime(2023, 6, 1) },
-        new Project { Id = 2, Title = "Desenvolvimento de App", Description = "Projeto para desenvolvimento de um aplicativo móvel.", Type = "Mobile Development", StartDate = new DateTime(2023, 2, 15), EndDate = new DateTime(2023, 8, 15) },
-        new Project { Id = 3, Title = "Sistema de Gestão", Description = "Desenvolvimento de um sistema de gestão empresarial.", Type = "Software Development", StartDate = new DateTime(2023, 5, 20), EndDate = new DateTime(2023, 12, 20) }
+        new Project { Id = 1, Title = "Desenvolvimento de Website", Description = "Projeto de criação de um site institucional.", Type = "Web Development", StartDate = new DateTime(2023, 1, 1), EndDate = new DateTime(2023, 6, 1), Skills = []},
+        new Project { Id = 2, Title = "Desenvolvimento de App", Description = "Projeto para desenvolvimento de um aplicativo móvel.", Type = "Mobile Development", StartDate = new DateTime(2023, 2, 15), EndDate = new DateTime(2023, 8, 15), Skills = []},
+        new Project { Id = 3, Title = "Sistema de Gestão", Description = "Desenvolvimento de um sistema de gestão empresarial.", Type = "Software Development", StartDate = new DateTime(2023, 5, 20), EndDate = new DateTime(2023, 12, 20), Skills = []}
     };
 
     public void Create(Project entity)
@@ -50,6 +51,6 @@ public class ProjectCRUD : IProjectCRUD
         project.Type = updatedProject.Type;
         project.StartDate = updatedProject.StartDate;
         project.EndDate = updatedProject.EndDate;
-        //project.Skills = updatedProject.Skills;
+        project.Skills = updatedProject.Skills;
     }
 }
