@@ -2,10 +2,10 @@ using System;
 using BackEndAPI.Core;
 using BackEndAPI.Service.DataBase.Interfaces;
 
-namespace BackEndAPI.Service.DataBase;
+namespace BackEndAPI.Service.DataBase.Entities;
 
 public class SkillCRUD : ISkillCRUD
-{   
+{
     private static readonly List<Skill> _skills = new List<Skill>
     {
         new Skill { Id = 1, Title = "Programming", Description = "Ability to write computer programs in various languages." },

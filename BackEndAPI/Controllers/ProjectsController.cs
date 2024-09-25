@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
+using BackEndAPI.Service.DataBase.Entities;
 
 namespace BackEndAPI.Controllers;
 
@@ -10,17 +11,24 @@ namespace BackEndAPI.Controllers;
 [Route("api/[controller]")]
 public class ProjectsController : ControllerBase
 {
+    private readonly IProjectSkillCRUD _relations;
     private readonly IProjectCRUD _projectsCRUD;
 
-    public ProjectsController(IProjectCRUD projectsCRUD)
+    public ProjectsController(IProjectSkillCRUD projectsSkillCRUD, IProjectCRUD projectCRUD)
     {
-        _projectsCRUD = projectsCRUD;
+        _relations = projectsSkillCRUD;
+        _projectsCRUD = projectCRUD;
     }
 
     [HttpGet(Name = "GetProjects")]
     public IEnumerable<Project> Get()
     {
-        return _projectsCRUD.GetAll();
+        var projects = _relations.GetProjects();
+        foreach (var project in projects)
+        {
+            project.Skills = _relations.GetRelatedSkillsOf(project);
+        }
+        return projects;
     }
 
     [HttpGet("{id}", Name = "GetProject")]
@@ -28,15 +36,15 @@ public class ProjectsController : ControllerBase
     {
         try
         {
-            var project = _projectsCRUD.GetById(id);
-            if(project is null) 
+            var project = _relations.GetProjectById(id);
+            if (project is null)
             {
                 return NotFound($"Project with Id {id} not found.");
             }
-
+            project.Skills = _relations.GetRelatedSkillsOf(project);
             return Ok(project);
         }
-        catch (Exception e) 
+        catch (Exception e)
         {
             return StatusCode(500, $"Internal server error: {e.Message}");
         }
