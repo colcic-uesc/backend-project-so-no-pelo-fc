@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace BackEndAPI.Core;
 
@@ -10,6 +11,7 @@ public class Project
     public string? Type { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+    [JsonIgnore]
     public IEnumerable<Skill>? Skills { get; set; }
 
 }
