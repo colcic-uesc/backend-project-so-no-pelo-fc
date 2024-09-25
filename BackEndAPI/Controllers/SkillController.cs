@@ -10,17 +10,36 @@ namespace BackEndAPI.Controllers;
 [Route("api/[controller]")]
 public class SkillController : ControllerBase
 {
+    private readonly IProjectSkillCRUD _relations;
     private readonly ISkillCRUD _skillCRUD;
 
-    public SkillController(ISkillCRUD skillCRUD)
+    public SkillController( IProjectSkillCRUD relations,ISkillCRUD skillCRUD)
     {
         _skillCRUD = skillCRUD;
+        _relations = relations;
     }
 
     [HttpGet(Name = "GetSkills")]
-    public IEnumerable<Skill> Get()
+    public IEnumerable<Skill> Get([FromQuery] bool? includeSkills = false)
     {
-        return _skillCRUD.GetAll();
+        var skills = _relations.GetSkills();
+
+        if (includeSkills != true)
+        {
+            foreach (var skill in skills)
+            {
+                skill.Projects = null;  
+            }
+
+            return skills;
+        }
+
+        foreach (var skill in skills)
+        {
+            skill.Projects = _relations.GetRelatedProjectsOf(skill);
+        }
+
+        return skills;
     }
 
     [HttpGet("{id}", Name = "GetSkill")]
@@ -28,12 +47,15 @@ public class SkillController : ControllerBase
     {
         try
         {
-            var skill = _skillCRUD.GetById(id);
-            if(skill is null) 
+           var skill = _relations.GetSkillById(id);
+            
+            if (skill is null)
             {
-                return NotFound($"Skill with Id {id} not found.");
+                return NotFound($"skill with Id {id} not found.");
             }
 
+            skill.Projects = _relations.GetRelatedProjectsOf(skill);
+            
             return Ok(skill);
         }
         catch (Exception e) 

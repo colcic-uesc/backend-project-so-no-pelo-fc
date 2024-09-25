@@ -462,19 +462,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\luizf\\.nuget\\packages\\": {}
+    "C:\\Users\\vitor_dj9lhx2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
+      "projectUniqueName": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
       "projectName": "BackEndAPI",
-      "projectPath": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
-      "packagesPath": "C:\\Users\\luizf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI\\obj\\",
+      "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
+      "packagesPath": "C:\\Users\\vitor_dj9lhx2\\.nuget\\packages\\",
+      "outputPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\luizf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\vitor_dj9lhx2\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -486,8 +486,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
-              "projectPath": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj"
+            "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
+              "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj"
             }
           }
         }

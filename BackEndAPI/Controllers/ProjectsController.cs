@@ -21,13 +21,25 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpGet(Name = "GetProjects")]
-    public IEnumerable<Project> Get()
+    public IEnumerable<Project> Get([FromQuery] bool? includeSkills = false)
     {
         var projects = _relations.GetProjects();
+
+        if (includeSkills != true)
+        {
+            foreach (var project in projects)
+            {
+                project.Skills = null;  
+            }
+
+            return projects;
+        }
+
         foreach (var project in projects)
         {
             project.Skills = _relations.GetRelatedSkillsOf(project);
         }
+
         return projects;
     }
 
@@ -37,11 +49,14 @@ public class ProjectsController : ControllerBase
         try
         {
             var project = _relations.GetProjectById(id);
+            
             if (project is null)
             {
                 return NotFound($"Project with Id {id} not found.");
             }
+
             project.Skills = _relations.GetRelatedSkillsOf(project);
+            
             return Ok(project);
         }
         catch (Exception e)
