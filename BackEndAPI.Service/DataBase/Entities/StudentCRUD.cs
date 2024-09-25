@@ -2,8 +2,7 @@ using System;
 using BackEndAPI.Core;
 using BackEndAPI.Service.DataBase.Interfaces;
 
-namespace BackEndAPI.Service.DataBase;
-
+namespace BackEndAPI.Service.DataBase.Entities;
 public class StudentCRUD : IStudentCRUD
 {
 

@@ -1,5 +1,5 @@
 using BackEndAPI.Service.DataBase.Interfaces;
-using BackEndAPI.Service.DataBase;
+using BackEndAPI.Service.DataBase.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +9,7 @@ builder.Services.AddScoped<IProjectCRUD, ProjectCRUD>();
 builder.Services.AddScoped<IProfessorCRUD, ProfessorCRUD>();
 builder.Services.AddScoped<IStudentCRUD, StudentCRUD>();
 builder.Services.AddScoped<ISkillCRUD, SkillCRUD>();
+builder.Services.AddScoped<IProjectSkillCRUD,ProjectSkillCRUD>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
