@@ -46,12 +46,10 @@ public class ProjectCRUD : IProjectCRUD
 
     public void Delete(int id)
     {
-        Console.WriteLine($"deleting with id {id}");
         var project = _projects.FirstOrDefault(p => p.Id == id);
         if (project is null) return;
 
         _projects.Remove(project);
-        Console.WriteLine(string.Join(", ", _projects));
     }
 
     public IEnumerable<Project> GetAll()
