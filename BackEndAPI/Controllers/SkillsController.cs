@@ -3,28 +3,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
+using BackEndAPI.Core.Dtos;
 
 namespace BackEndAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SkillController : ControllerBase
+public class SkillsController : ControllerBase
 {
     private readonly IProjectSkillCRUD _relations;
     private readonly ISkillCRUD _skillCRUD;
 
-    public SkillController( IProjectSkillCRUD relations,ISkillCRUD skillCRUD)
+    public SkillsController( IProjectSkillCRUD relations,ISkillCRUD skillCRUD)
     {
         _skillCRUD = skillCRUD;
         _relations = relations;
     }
 
     [HttpGet(Name = "GetSkills")]
-    public IEnumerable<Skill> Get([FromQuery] bool? includeSkills = false)
+    public IEnumerable<Skill> Get([FromQuery] bool? includeProjects = false)
     {
         var skills = _relations.GetSkills();
 
-        if (includeSkills != true)
+        if (includeProjects != true)
         {
             foreach (var skill in skills)
             {
@@ -65,15 +66,29 @@ public class SkillController : ControllerBase
     }
 
     [HttpPost(Name = "CreateSkill")]
-    public void Create(Skill skill)
+    public void Create(SkillCreateDto dto)
     {
-        _skillCRUD.Create(skill);
+        _skillCRUD.Create(
+            new Skill
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                Title = dto.Title
+            }
+        );
     }
 
     [HttpPut(Name = "UpdateSkill")]
-    public void Update(Skill skill)
+    public void Update(SkillUpdateDto dto)
     {
-        _skillCRUD.Update(skill);
+        _skillCRUD.Update(
+            new Skill
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                Title = dto.Title
+            }
+        );
     }
 
     [HttpDelete("{id}", Name = "DeleteSkill")]

@@ -8,11 +8,11 @@ namespace BackEndAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class StudentController : ControllerBase
+public class StudentsController : ControllerBase
 {
     private readonly IStudentCRUD _studentCRUD;
 
-    public StudentController(IStudentCRUD studentCRUD)
+    public StudentsController(IStudentCRUD studentCRUD)
     {
         _studentCRUD = studentCRUD;
     }

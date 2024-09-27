@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
 using BackEndAPI.Service.DataBase.Entities;
+using BackEndAPI.Core.Dtos;
 
 namespace BackEndAPI.Controllers;
 
@@ -66,15 +67,35 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpPost(Name = "CreateProjet")]
-    public void Create(Project project)
+    public void Create(ProjectCreateDto dto)
     {
-        _projectsCRUD.Create(project);
+        _projectsCRUD.Create(
+            new Project
+            {
+                Id = dto.Id,
+                Title = dto.Title,
+                Description = dto.Description,
+                Type = dto.Type,
+                StartDate =dto.StartDate,
+                EndDate = dto.EndDate
+            }
+        );
     }
 
     [HttpPut(Name = "UpdateProject")]
-    public void Update(Project project)
+    public void Update(ProjectUpdateDto dto)
     {
-        _projectsCRUD.Update(project);
+        _projectsCRUD.Update(
+            new Project
+            {
+                Id = dto.Id,
+                Title = dto.Title,
+                Description = dto.Description,
+                Type = dto.Type,
+                StartDate =dto.StartDate,
+                EndDate = dto.EndDate
+            }
+        );
     }
 
     [HttpDelete("{id}", Name = "DeleteProject")]

@@ -8,12 +8,40 @@ public class SkillCRUD : ISkillCRUD
 {
     private static readonly List<Skill> _skills = new List<Skill>
     {
-        new Skill { Id = 1, Title = "Programming", Description = "Ability to write computer programs in various languages." },
-        new Skill { Id = 2, Title = "Web Design", Description = "Skills in designing functional and attractive web pages." },
-        new Skill { Id = 3, Title = "Project Management", Description = "Ability to manage projects efficiently and lead teams." },
-        new Skill { Id = 4, Title = "Data Analysis", Description = "Expertise in analyzing complex datasets to extract actionable insights." },
-        new Skill { Id = 5, Title = "Mobile Development", Description = "Ability to develop applications for mobile devices on platforms like Android and iOS." },
-        new Skill { Id = 6, Title = "UI/UX Design", Description = "Skills in designing user interfaces and experiences that are both intuitive and engaging." }
+        new Skill 
+        { 
+            Id = 1,
+            Title = "Programming",
+            Description = "Ability to write computer programs in various languages." },
+        new Skill 
+        { 
+            Id = 2,
+            Title = "Web Design",
+            Description = "Skills in designing functional and attractive web pages." },
+        new Skill 
+        { 
+            Id = 3,
+            Title = "Project Management",
+            Description = "Ability to manage projects efficiently and lead teams." 
+        },
+        new Skill 
+        { 
+            Id = 4,
+            Title = "Data Analysis",
+            Description = "Expertise in analyzing complex datasets to extract actionable insights." 
+        },
+        new Skill 
+        { 
+            Id = 5,
+            Title = "Mobile Development",
+            Description = "Ability to develop applications for mobile devices on platforms like Android and iOS."
+        },
+        new Skill 
+        { 
+            Id = 6,
+            Title = "UI/UX Design",
+            Description = "Skills in designing user interfaces and experiences that are both intuitive and engaging."
+        }
     };
 
     public void Create(Skill entity)
@@ -37,7 +65,7 @@ public class SkillCRUD : ISkillCRUD
 
     public Skill? GetById(int id)
     {
-        return _skills.FirstOrDefault(x => x.Id == id);
+        return _skills.FirstOrDefault(s => s.Id == id);
     }
 
     public void Update(Skill entity)
