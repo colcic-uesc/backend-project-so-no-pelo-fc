@@ -12,36 +12,17 @@ namespace BackEndAPI.Controllers;
 [Route("api/[controller]")]
 public class ProjectsController : ControllerBase
 {
-    private readonly IProjectSkillCRUD _relations;
     private readonly IProjectCRUD _projectsCRUD;
 
-    public ProjectsController(IProjectSkillCRUD projectsSkillCRUD, IProjectCRUD projectCRUD)
+    public ProjectsController(IProjectCRUD projectsCRUD)
     {
-        _relations = projectsSkillCRUD;
-        _projectsCRUD = projectCRUD;
+        _projectsCRUD = projectsCRUD;
     }
 
     [HttpGet(Name = "GetProjects")]
-    public IEnumerable<Project> Get([FromQuery] bool? includeSkills = false)
+    public IEnumerable<Project> Get()
     {
-        var projects = _relations.GetProjects();
-
-        if (includeSkills != true)
-        {
-            foreach (var project in projects)
-            {
-                project.Skills = null;  
-            }
-
-            return projects;
-        }
-
-        foreach (var project in projects)
-        {
-            project.Skills = _relations.GetRelatedSkillsOf(project);
-        }
-
-        return projects;
+        return _projectsCRUD.GetAll();
     }
 
     [HttpGet("{id}", Name = "GetProject")]
@@ -49,53 +30,30 @@ public class ProjectsController : ControllerBase
     {
         try
         {
-            var project = _relations.GetProjectById(id);
-            
-            if (project is null)
+            var project = _projectsCRUD.GetById(id);
+            if(project is null) 
             {
                 return NotFound($"Project with Id {id} not found.");
             }
 
-            project.Skills = _relations.GetRelatedSkillsOf(project);
-            
             return Ok(project);
         }
-        catch (Exception e)
+        catch (Exception e) 
         {
             return StatusCode(500, $"Internal server error: {e.Message}");
         }
     }
 
-    [HttpPost(Name = "CreateProjet")]
-    public void Create(ProjectCreateDto dto)
+    [HttpPost(Name = "CreateProject")]
+    public void Create(Project project)
     {
-        _projectsCRUD.Create(
-            new Project
-            {
-                Id = dto.Id,
-                Title = dto.Title,
-                Description = dto.Description,
-                Type = dto.Type,
-                StartDate =dto.StartDate,
-                EndDate = dto.EndDate
-            }
-        );
+        _projectsCRUD.Create(project);
     }
 
     [HttpPut(Name = "UpdateProject")]
-    public void Update(ProjectUpdateDto dto)
+    public void Update(Project project)
     {
-        _projectsCRUD.Update(
-            new Project
-            {
-                Id = dto.Id,
-                Title = dto.Title,
-                Description = dto.Description,
-                Type = dto.Type,
-                StartDate =dto.StartDate,
-                EndDate = dto.EndDate
-            }
-        );
+        _projectsCRUD.Update(project);
     }
 
     [HttpDelete("{id}", Name = "DeleteProject")]
