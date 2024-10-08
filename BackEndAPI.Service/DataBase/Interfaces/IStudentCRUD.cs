@@ -3,7 +3,7 @@ using BackEndAPI.Core;
 
 namespace BackEndAPI.Service.DataBase.Interfaces;
 
-public interface IStudentCRUD : IBaseCRUD<Students> 
+public interface IStudentCRUD : IBaseCRUD<Student> 
 {
-    Students? GetByRegistration(string registration);
+    Student? GetByRegistration(string registration);
 }

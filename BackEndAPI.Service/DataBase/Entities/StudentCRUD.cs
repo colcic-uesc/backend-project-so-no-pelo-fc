@@ -5,54 +5,51 @@ using BackEndAPI.Service.DataBase.Interfaces;
 namespace BackEndAPI.Service.DataBase.Entities;
 public class StudentCRUD : IStudentCRUD
 {
-
-    private static readonly List<Students> _studentList = new List<Students>
+    private readonly ApiDBContext _context;
+    public StudentCRUD(ApiDBContext context)
     {
-        new Students { Id = 1, Registration = "REG001", Name = "Ana Silva", Email = "ana.silva@university.com", Course = "Computer Science", Bio = "Ana is a computer science student interested in AI and machine learning.", Skills = [] },
-        new Students { Id = 2, Registration = "REG002", Name = "Marcos Andrade", Email = "marcos.andrade@university.com", Course = "Business Administration", Bio = "Marcos is specializing in finance and business strategy.", Skills = [] },
-        new Students { Id = 3, Registration = "REG003", Name = "Leticia Costa", Email = "leticia.costa@university.com", Course = "Mechanical Engineering", Bio = "Leticia is involved in several projects related to renewable energy.", Skills = [] }
-    };
+        _context = context;
+    }
 
-    public void Create(Students entity)
+    public void Create(Student entity)
     {
-        entity.Id = _studentList.Count > 0 ? _studentList.Max(p => p.Id) + 1 : 1; // Auto-increment Id
-        _studentList.Add(entity);
+        _context.Students.Add(entity);
+        _context.SaveChanges();
     }
 
     public void Delete(int id)
     {
-        var student = _studentList.FirstOrDefault(x => x.Id == id);
-        if (student is null) return;
-
-        _studentList.Remove(student);
+        var student = _context.Students.Find(id) ?? throw new Exception("Student not found");
+        _context.Students.Remove(student);
+        _context.SaveChanges();
     }
 
-    public IEnumerable<Students> GetAll()
+    public IEnumerable<Student> GetAll()
     {
-        return _studentList;
+        return _context.Students;
     }
 
-    public Students? GetById(int id)
+    public Student? GetById(int id)
     {
-        return _studentList.FirstOrDefault(x => x.Id == id);
+        var student = _context.Students.Find(id) ?? throw new Exception("Student not found");
+        return student;
     }
 
-    public Students? GetByRegistration(string registration)
+    public Student? GetByRegistration(string registration)
     {
-        return _studentList.FirstOrDefault(x => x.Registration == registration);
+        var student = _context.Students.FirstOrDefault(s => s.Registration == registration) ?? throw new Exception("Student not found");
+        return student;
     }
 
-    public void Update(Students entity)
+    public void Update(Student entity)
     {
-        var student = _studentList.FirstOrDefault(x => x.Id == entity.Id);
-        if (student == null) return;
-
+        var student = _context.Students.Find(entity.Id) ?? throw new Exception("Student not found");
         student.Name = entity.Name;
-        student.Registration = entity.Registration;
         student.Email = entity.Email;
         student.Course = entity.Course;
+        student.Registration = entity.Registration;
         student.Bio = entity.Bio;
-        student.Skills = entity.Skills;
-    }
+        _context.SaveChanges();
+    }  
 }
 

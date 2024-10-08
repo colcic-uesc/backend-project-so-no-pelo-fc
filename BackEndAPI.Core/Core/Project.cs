@@ -8,5 +8,5 @@ public class Project
     public string? Type { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public List<Skill>? Skills { get; set; }
+    public ICollection<Skill> Skills { get; set; } = [];
 }

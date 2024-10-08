@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
 using BackEndAPI.Core.Dtos;
@@ -11,52 +9,30 @@ namespace BackEndAPI.Controllers;
 [Route("api/[controller]")]
 public class SkillsController : ControllerBase
 {
-    private readonly IProjectSkillCRUD _relations;
-    private readonly ISkillCRUD _skillCRUD;
+    private readonly ISkillCRUD _skillsCRUD;
 
-    public SkillsController( IProjectSkillCRUD relations,ISkillCRUD skillCRUD)
+    public SkillsController(ISkillCRUD skillsCRUD)
     {
-        _skillCRUD = skillCRUD;
-        _relations = relations;
+        _skillsCRUD = skillsCRUD;
     }
 
     [HttpGet(Name = "GetSkills")]
-    public IEnumerable<Skill> Get([FromQuery] bool? includeProjects = false)
+    public IEnumerable<Skill> Get()
     {
-        var skills = _relations.GetSkills();
-
-        if (includeProjects != true)
-        {
-            foreach (var skill in skills)
-            {
-                skill.Projects = null;  
-            }
-
-            return skills;
-        }
-
-        foreach (var skill in skills)
-        {
-            skill.Projects = _relations.GetRelatedProjectsOf(skill);
-        }
-
-        return skills;
+        return _skillsCRUD.GetAll();
     }
 
-    [HttpGet("{id}", Name = "GetSkill")]
+    [HttpGet("{id}/projects", Name = "GetSkill")]
     public ActionResult<Skill> Get(int id)
     {
         try
         {
-           var skill = _relations.GetSkillById(id);
-            
-            if (skill is null)
+            var skill = _skillsCRUD.GetById(id);
+            if(skill is null) 
             {
-                return NotFound($"skill with Id {id} not found.");
+                return NotFound($"Skill with Id {id} not found.");
             }
 
-            skill.Projects = _relations.GetRelatedProjectsOf(skill);
-            
             return Ok(skill);
         }
         catch (Exception e) 
@@ -68,32 +44,32 @@ public class SkillsController : ControllerBase
     [HttpPost(Name = "CreateSkill")]
     public void Create(SkillCreateDto dto)
     {
-        _skillCRUD.Create(
+        _skillsCRUD.Create(
             new Skill
             {
                 Id = dto.Id,
+                Title = dto.Title,
                 Description = dto.Description,
-                Title = dto.Title
-            }
+            } 
         );
     }
 
     [HttpPut(Name = "UpdateSkill")]
     public void Update(SkillUpdateDto dto)
     {
-        _skillCRUD.Update(
+        _skillsCRUD.Update(
             new Skill
             {
                 Id = dto.Id,
+                Title = dto.Title,
                 Description = dto.Description,
-                Title = dto.Title
-            }
+            } 
         );
     }
 
     [HttpDelete("{id}", Name = "DeleteSkill")]
     public void Delete(int id)
     {
-        _skillCRUD.Delete(id);
+        _skillsCRUD.Delete(id);
     }
 }

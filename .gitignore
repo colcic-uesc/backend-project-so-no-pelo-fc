@@ -11,6 +11,11 @@
 *.userosscache
 *.sln.docstates
 
+# User-specific files
+/BackEndAPI/obj/
+/BackEndAPI/bin/
+/BackEndAPI/debug/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
