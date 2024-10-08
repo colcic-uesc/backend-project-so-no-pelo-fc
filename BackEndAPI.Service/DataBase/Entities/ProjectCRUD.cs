@@ -6,71 +6,45 @@ using BackEndAPI.Service.DataBase.Interfaces;
 namespace BackEndAPI.Service.DataBase.Entities;
 
 public class ProjectCRUD : IProjectCRUD
-{
-
-    private static readonly List<Project> _projects = new List<Project>
+{   
+    private readonly ApiDBContext _context;
+    public ProjectCRUD(ApiDBContext context)
     {
-        new Project 
-        { 
-            Id = 1,
-            Title = "Desenvolvimento de Website",
-            Description = "Projeto de criação de um site institucional.",
-            Type = "Web Development",
-            StartDate = new DateTime(2023, 1, 1),
-            EndDate = new DateTime(2023, 6, 1)
-        },
-        new Project 
-        { 
-            Id = 2,
-            Title = "Desenvolvimento de App", Description = "Projeto para desenvolvimento de um aplicativo móvel.",
-            Type = "Mobile Development",
-            StartDate = new DateTime(2023, 2, 15),
-            EndDate = new DateTime(2023, 8, 15)
-        },
-        new Project 
-        { 
-            Id = 3,
-            Title = "Sistema de Gestão",
-            Description = "Desenvolvimento de um sistema de gestão empresarial.",
-            Type = "Software Development",
-            StartDate = new DateTime(2023, 5, 20),
-            EndDate = new DateTime(2023, 12, 20)
-        }
-    };
+        _context = context;
+    }
 
     public void Create(Project entity)
     {
-        entity.Id = _projects.Count > 0 ? _projects.Max(p => p.Id) + 1 : 1; // Auto-increment Id
-        _projects.Add(entity);
+        _context.Projects.Add(entity);
+        _context.SaveChanges();
     }
 
     public void Delete(int id)
     {
-        var project = _projects.FirstOrDefault(p => p.Id == id);
-        if (project is null) return;
-
-        _projects.Remove(project);
+        var project = _context.Projects.Find(id) ?? throw new Exception("Project not found");
+        _context.Projects.Remove(project);
+        _context.SaveChanges();
     }
 
     public IEnumerable<Project> GetAll()
     {
-        return _projects;
+        return _context.Projects;
     }
 
     public Project? GetById(int id)
     {
-        return _projects.FirstOrDefault(p => p.Id == id);
+        var project = _context.Projects.Find(id) ?? throw new Exception("Project not found");
+        return project;
     }
 
-    public void Update(Project updatedProject)
+    public void Update(Project entity)
     {
-        var project = _projects.FirstOrDefault(p => p.Id == updatedProject.Id);
-        if (project == null) return;
-
-        project.Title = updatedProject.Title;
-        project.Description = updatedProject.Description;
-        project.Type = updatedProject.Type;
-        project.StartDate = updatedProject.StartDate;
-        project.EndDate = updatedProject.EndDate;
+        var project = _context.Projects.Find(entity.Id) ?? throw new Exception("Project not found");
+        project.Title = entity.Title;
+        project.Description = entity.Description;
+        project.Type = entity.Type;
+        project.StartDate = entity.StartDate;
+        project.EndDate = entity.EndDate;
+        _context.SaveChanges();
     }
 }

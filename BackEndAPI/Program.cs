@@ -5,11 +5,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<ApiDBContext>();
+
 builder.Services.AddScoped<IProjectCRUD, ProjectCRUD>();
 builder.Services.AddScoped<IProfessorCRUD, ProfessorCRUD>();
 builder.Services.AddScoped<IStudentCRUD, StudentCRUD>();
 builder.Services.AddScoped<ISkillCRUD, SkillCRUD>();
-builder.Services.AddScoped<IProjectSkillCRUD, ProjectSkillCRUD>();
+// builder.Services.AddScoped<IProjectSkillCRUD, ProjectSkillCRUD>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

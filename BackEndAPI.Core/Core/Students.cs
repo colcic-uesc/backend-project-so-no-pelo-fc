@@ -10,5 +10,4 @@ public class Students
     public string? Email { get; set; } 
     public string? Course { get; set; } 
     public string? Bio { get; set; } 
-    public List<Skill>? Skills { get; set; } 
 }
