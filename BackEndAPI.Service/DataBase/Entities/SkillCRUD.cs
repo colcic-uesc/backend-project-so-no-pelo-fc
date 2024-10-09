@@ -1,6 +1,7 @@
 using System;
 using BackEndAPI.Core;
 using BackEndAPI.Service.DataBase.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackEndAPI.Service.DataBase.Entities;
 
@@ -32,7 +33,9 @@ public class SkillCRUD : ISkillCRUD
 
     public Skill? GetById(int id)
     {
-        var skill = _context.Skills.Find(id) ?? throw new Exception("Skill not found");
+        var skill = _context.Skills
+                    .Include(s => s.Projects)
+                    .FirstOrDefault(s => s.Id == id) ?? throw new Exception("Skill not found");
         return skill;
     }
 

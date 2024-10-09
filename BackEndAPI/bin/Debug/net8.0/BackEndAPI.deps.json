@@ -755,10 +755,7 @@
       "System.Threading.Channels/6.0.0": {},
       "BackEndAPI.Core/1.0.0": {
         "runtime": {
-          "BackEndAPI.Core.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "BackEndAPI.Core.dll": {}
         }
       },
       "BackEndAPI.Service/1.0.0": {
@@ -770,10 +767,7 @@
           "Microsoft.Extensions.Configuration.Json": "8.0.1"
         },
         "runtime": {
-          "BackEndAPI.Service.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "BackEndAPI.Service.dll": {}
         }
       }
     }

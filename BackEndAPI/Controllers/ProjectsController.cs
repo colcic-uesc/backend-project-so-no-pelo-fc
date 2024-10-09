@@ -97,4 +97,23 @@ public class ProjectsController : ControllerBase
     {
         _projectsCRUD.Delete(id);
     }
+
+    [HttpDelete("{projectId}/skills/{skillId}", Name = "DeleteProjectSkillRelationship")]
+    public IActionResult ProjectSkillDelete(int projectId, int skillId)
+    {
+        try
+        {
+            var project = _projectsCRUD.DeleteRelationship(projectId, skillId);
+            if(project is null) 
+            {
+                return NotFound($"Erro ao deletar relacionamento. Projeto ou Skill nao encontrada.");
+            }
+
+            return Ok(project);
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
+    }
 }
