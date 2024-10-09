@@ -1,12 +1,15 @@
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Service.DataBase.Entities;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-
-builder.Services.AddDbContext<ApiDBContext>();
+builder.Services.AddDbContext<ApiDBContext>(options => {
+    var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlite(conn);
+});
 
 builder.Services.AddScoped<IProjectCRUD, ProjectCRUD>();
 builder.Services.AddScoped<IProfessorCRUD, ProfessorCRUD>();
