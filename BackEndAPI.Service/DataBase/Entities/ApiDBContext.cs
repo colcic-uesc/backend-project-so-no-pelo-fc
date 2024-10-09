@@ -11,16 +11,18 @@ public class ApiDBContext : DbContext
     public DbSet<Professor> Professors { get; set; }
     public DbSet<Skill> Skills { get; set; }
 
+    public ApiDBContext(DbContextOptions<ApiDBContext> options)
+        :base(options)
+    {}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Students>().HasKey(x => x.Id);
         modelBuilder.Entity<Professor>().HasKey(x => x.Id);
         modelBuilder.Entity<Project>().HasKey(x => x.Id);
         modelBuilder.Entity<Skill>().HasKey(x => x.Id);
-    }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite("Data Source=C:/Users/Vitor/OneDrive/Documentos/ProjetoWeb/backend-project-so-no-pelo-fc/BackEndAPI/ShowRoomDB.db");
+        modelBuilder.SeedProfessors();
+        modelBuilder.SeedProjects();
+        modelBuilder.SeedStudents();
     }
 }

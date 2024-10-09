@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj": {}
+    "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj": {
+    "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj",
+        "projectUniqueName": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj",
         "projectName": "BackEndAPI.Core",
-        "projectPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj",
-        "packagesPath": "C:\\Users\\Vitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\obj\\",
+        "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj",
+        "packagesPath": "C:\\Users\\vitor_dj9lhx2\\.nuget\\packages\\",
+        "outputPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vitor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vitor_dj9lhx2\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -58,21 +58,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
+    "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj",
+        "projectUniqueName": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj",
         "projectName": "BackEndAPI.Service",
-        "projectPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj",
-        "packagesPath": "C:\\Users\\Vitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\obj\\",
+        "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj",
+        "packagesPath": "C:\\Users\\vitor_dj9lhx2\\.nuget\\packages\\",
+        "outputPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vitor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vitor_dj9lhx2\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -84,8 +84,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj": {
-                "projectPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj"
+              "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj": {
+                "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Core\\BackEndAPI.Core.csproj"
               }
             }
           }
@@ -118,6 +118,20 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             }
           },
           "imports": [
@@ -136,21 +150,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj": {
+    "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
+        "projectUniqueName": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
         "projectName": "BackEndAPI",
-        "projectPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
-        "packagesPath": "C:\\Users\\Vitor\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\obj\\",
+        "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
+        "packagesPath": "C:\\Users\\vitor_dj9lhx2\\.nuget\\packages\\",
+        "outputPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vitor\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\vitor_dj9lhx2\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -162,8 +176,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
-                "projectPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj"
+              "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
+                "projectPath": "D:\\code\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj"
               }
             }
           }
@@ -213,7 +227,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
