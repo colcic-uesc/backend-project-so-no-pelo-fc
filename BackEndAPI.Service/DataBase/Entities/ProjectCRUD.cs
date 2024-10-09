@@ -62,4 +62,20 @@ public class ProjectCRUD : IProjectCRUD
         project.EndDate = entity.EndDate;
         _context.SaveChanges();
     }
+
+    public Project? DeleteRelationship(int pId, int sId)
+    {
+        var project = _context.Projects
+                        .Include(p => p.Skills)
+                        .FirstOrDefault(p => p.Id == pId) 
+                        ?? throw new Exception("Project not found");
+        var skill = _context.Skills.Find(sId) ?? throw new Exception("Skill not found");
+
+
+        project.Skills.Remove(skill);
+        _context.SaveChanges();
+
+        return project;
+    }
+
 }
