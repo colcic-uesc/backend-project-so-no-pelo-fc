@@ -18,13 +18,13 @@ public class StudentsController : ControllerBase
     }
 
     [HttpGet(Name = "GetStudents")]
-    public IEnumerable<Students> Get()
+    public IEnumerable<Student> Get()
     {
         return _studentCRUD.GetAll();
     }
 
     [HttpGet("register/{registration}", Name = "GetStudentByRegistration")]
-    public ActionResult<Students> Get(string registration)
+    public ActionResult<Student> Get(string registration)
     {
         var student = _studentCRUD.GetByRegistration(registration);
         if(student is null) 
@@ -36,7 +36,7 @@ public class StudentsController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetStudent")]
-    public ActionResult<Students> Get(int id)
+    public ActionResult<Student> Get(int id)
     {
         try
         {
@@ -55,13 +55,13 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPost(Name = "CreateStudent")]
-    public void Create(Students student)
+    public void Create(Student student)
     {
         _studentCRUD.Create(student);
     }
 
     [HttpPut(Name = "UpdateStudent")]
-    public void Update(Students student)
+    public void Update(Student student)
     {
         _studentCRUD.Update(student);
     }

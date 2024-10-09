@@ -1,9 +1,8 @@
-using BackEndAPI.Service.DataBase.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace BackEndAPI.Service.DataBase;
+namespace BackEndAPI.Service.DataBase.Entities;
 public class ApiDBContextFactory : IDesignTimeDbContextFactory<ApiDBContext>
 {
     public ApiDBContext CreateDbContext(string[] args)

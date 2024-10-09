@@ -1,9 +1,6 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
-using BackEndAPI.Service.DataBase.Entities;
 using BackEndAPI.Core.Dtos;
 
 namespace BackEndAPI.Controllers;
@@ -25,7 +22,7 @@ public class ProjectsController : ControllerBase
         return _projectsCRUD.GetAll();
     }
 
-    [HttpGet("{id}", Name = "GetProject")]
+    [HttpGet("{id}/skills", Name = "GetProject")]
     public ActionResult<Project> Get(int id)
     {
         try
@@ -45,15 +42,54 @@ public class ProjectsController : ControllerBase
     }
 
     [HttpPost(Name = "CreateProject")]
-    public void Create(Project project)
+    public void Create(ProjectCreateDto dto)
     {
-        _projectsCRUD.Create(project);
+        _projectsCRUD.Create(
+            new Project
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                StartDate = dto.StartDate,
+                Title = dto.Title,
+                Type = dto.Type,
+                EndDate = dto.EndDate,
+            } 
+        );
     }
 
     [HttpPut(Name = "UpdateProject")]
-    public void Update(Project project)
+    public void Update(ProjectUpdateDto dto)
     {
-        _projectsCRUD.Update(project);
+        _projectsCRUD.Update(
+            new Project
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                StartDate = dto.StartDate,
+                Title = dto.Title,
+                Type = dto.Type,
+                EndDate = dto.EndDate,
+            } 
+        );
+    }
+
+    [HttpPut("{projectId}/skills/{skillId}", Name = "UpdateProjectSkillRelationship")]
+    public IActionResult ProjectSkillUpdate(int projectId, int skillId)
+    {
+        try
+        {
+            var project = _projectsCRUD.CreateRelationship(projectId, skillId);
+            if(project is null) 
+            {
+                return NotFound($"Erro ao criar relacionamento. Projeto ou Skill nao encontrada.");
+            }
+
+            return Ok(project);
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
     }
 
     [HttpDelete("{id}", Name = "DeleteProject")]
