@@ -53,7 +53,7 @@ public static class ModelBuilderExtensions
                 Description = "Developing an AI-based chatbot to assist with customer service automation for a leading e-commerce platform.",
                 Type = "Research and Development",
                 StartDate = new DateTime(2023, 1, 15),
-                EndDate = new DateTime(2024, 1, 15)
+                EndDate = new DateTime(2024, 1, 15),
             },
             new Project
             {
@@ -80,7 +80,8 @@ public static class ModelBuilderExtensions
                 Description = "Developing a blockchain solution for securing and tracking the movement of goods across the supply chain.",
                 Type = "Research and Development",
                 StartDate = new DateTime(2023, 3, 20),
-                EndDate = new DateTime(2024, 4, 30)
+                EndDate = new DateTime(2024, 4, 30),
+                
             },
             new Project
             {
@@ -105,8 +106,8 @@ public static class ModelBuilderExtensions
 
     public static void SeedStudents(this ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Students>().HasData(
-            new Students
+        modelBuilder.Entity<Student>().HasData(
+            new Student
             {
                 Id = 1,
                 Registration = "2023001",
@@ -115,7 +116,7 @@ public static class ModelBuilderExtensions
                 Course = "Computer Science",
                 Bio = "Enthusiastic student with a passion for software development and AI."
             },
-            new Students
+            new Student
             {
                 Id = 2,
                 Registration = "2023002",
@@ -124,7 +125,7 @@ public static class ModelBuilderExtensions
                 Course = "Electrical Engineering",
                 Bio = "Focused on embedded systems and renewable energy technologies."
             },
-            new Students
+            new Student
             {
                 Id = 3,
                 Registration = "2023003",
@@ -133,7 +134,7 @@ public static class ModelBuilderExtensions
                 Course = "Business Administration",
                 Bio = "Aiming to leverage technology for improving business operations."
             },
-            new Students
+            new Student
             {
                 Id = 4,
                 Registration = "2023004",
@@ -142,7 +143,7 @@ public static class ModelBuilderExtensions
                 Course = "Physics",
                 Bio = "Keen interest in quantum mechanics and astrophysics."
             },
-            new Students
+            new Student
             {
                 Id = 5,
                 Registration = "2023005",
@@ -151,7 +152,7 @@ public static class ModelBuilderExtensions
                 Course = "Information Technology",
                 Bio = "Passionate about cybersecurity and network security."
             },
-            new Students
+            new Student
             {
                 Id = 6,
                 Registration = "2023006",
@@ -162,4 +163,84 @@ public static class ModelBuilderExtensions
             }
         );
     }
+
+    public static void SeedSkills(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Skill>()
+                    .HasData(
+                        new Skill 
+                        { 
+                            Id = 1,
+                            Title = "C#",
+                            Description = "A modern, object-oriented programming language developed by Microsoft."
+                        },
+                        new Skill 
+                        { 
+                            Id = 2,
+                            Title = "ASP.NET",
+                            Description = "A framework for building web applications and services with .NET." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 3,
+                            Title = "SQL",
+                            Description = "A standard language for storing, manipulating, and retrieving data in databases." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 4,
+                            Title = "JavaScript",
+                            Description = "A dynamic, high-level programming language commonly used for web development." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 5,
+                            Title = "React",
+                            Description = "A JavaScript library for building user interfaces." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 6,
+                            Title = "Entity Framework",
+                            Description = "An object-relational mapper (ORM) for working with databases using .NET." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 7,
+                            Title = "Azure",
+                            Description = "Microsoft's cloud computing platform for building, testing, and deploying applications." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 8,
+                            Title = "Git",
+                            Description = "A distributed version control system for tracking changes in source code." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 9,
+                            Title = "Docker",
+                            Description = "A platform for developing, shipping, and running applications in containers." 
+                        },
+                        new Skill 
+                        { 
+                            Id = 10,
+                            Title = "Agile",
+                            Description = "A methodology for managing software development projects with iterative processes." 
+                        }
+                    );
+    }
+
+   /* public static void SeedProjectSkill (this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Project>()
+                    .HasMany(s => s.Skills)
+                    .WithMany(p => p.Projects)
+                    .UsingEntity(j => j.HasData(
+                        new { ProjectsId = 1, SkillsId = 2 },
+                        new { ProjectsId = 1, SkillsId = 5 },
+                        new { ProjectsId = 3, SkillsId = 7 },
+                        new { ProjectsId = 4, SkillsId = 4 }
+                    ));
+    }*/
 }

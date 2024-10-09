@@ -6,7 +6,7 @@ namespace BackEndAPI.Service.DataBase.Entities;
 
 public class ApiDBContext : DbContext
 {
-    public DbSet<Students> Students { get; set; }
+    public DbSet<Student> Students { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<Professor> Professors { get; set; }
     public DbSet<Skill> Skills { get; set; }
@@ -16,13 +16,25 @@ public class ApiDBContext : DbContext
     {}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Students>().HasKey(x => x.Id);
+        modelBuilder.Entity<Student>().HasKey(x => x.Id);
         modelBuilder.Entity<Professor>().HasKey(x => x.Id);
         modelBuilder.Entity<Project>().HasKey(x => x.Id);
         modelBuilder.Entity<Skill>().HasKey(x => x.Id);
 
+        modelBuilder.Entity<Project>()
+                    .HasMany(s => s.Skills)
+                    .WithMany(p => p.Projects)
+                    .UsingEntity(j => j.HasData(
+                        new { ProjectsId = 1, SkillsId = 2 },
+                        new { ProjectsId = 1, SkillsId = 5 },
+                        new { ProjectsId = 3, SkillsId = 7 },
+                        new { ProjectsId = 4, SkillsId = 4 }
+                    ));
+                    
         modelBuilder.SeedProfessors();
-        modelBuilder.SeedProjects();
         modelBuilder.SeedStudents();
+        modelBuilder.SeedProjects();
+        modelBuilder.SeedSkills();
+        //modelBuilder.SeedProjectSkill();
     }
 }

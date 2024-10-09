@@ -2,7 +2,7 @@ using System;
 
 namespace BackEndAPI.Core;
 
-public class Students
+public class Student
 {
     public int Id { get ; set; }
     public string? Registration { get; set; } 

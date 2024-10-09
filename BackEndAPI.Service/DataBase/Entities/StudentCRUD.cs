@@ -11,7 +11,7 @@ public class StudentCRUD : IStudentCRUD
         _context = context;
     }
 
-    public void Create(Students entity)
+    public void Create(Student entity)
     {
         _context.Students.Add(entity);
         _context.SaveChanges();
@@ -24,24 +24,24 @@ public class StudentCRUD : IStudentCRUD
         _context.SaveChanges();
     }
 
-    public IEnumerable<Students> GetAll()
+    public IEnumerable<Student> GetAll()
     {
         return _context.Students;
     }
 
-    public Students? GetById(int id)
+    public Student? GetById(int id)
     {
         var student = _context.Students.Find(id) ?? throw new Exception("Student not found");
         return student;
     }
 
-    public Students? GetByRegistration(string registration)
+    public Student? GetByRegistration(string registration)
     {
         var student = _context.Students.FirstOrDefault(s => s.Registration == registration) ?? throw new Exception("Student not found");
         return student;
     }
 
-    public void Update(Students entity)
+    public void Update(Student entity)
     {
         var student = _context.Students.Find(entity.Id) ?? throw new Exception("Student not found");
         student.Name = entity.Name;
