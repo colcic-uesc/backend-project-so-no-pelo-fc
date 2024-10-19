@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
-using BackEndAPI.Service.DataBase.Entities;
+using BackEndAPI.Core.Dtos;
 
 namespace BackEndAPI.Controllers;
 
@@ -11,60 +9,111 @@ namespace BackEndAPI.Controllers;
 [Route("api/[controller]")]
 public class ProjectsController : ControllerBase
 {
-    private readonly IProjectSkillCRUD _relations;
     private readonly IProjectCRUD _projectsCRUD;
 
-    public ProjectsController(IProjectSkillCRUD projectsSkillCRUD, IProjectCRUD projectCRUD)
+    public ProjectsController(IProjectCRUD projectsCRUD)
     {
-        _relations = projectsSkillCRUD;
-        _projectsCRUD = projectCRUD;
+        _projectsCRUD = projectsCRUD;
     }
 
     [HttpGet(Name = "GetProjects")]
     public IEnumerable<Project> Get()
     {
-        var projects = _relations.GetProjects();
-        foreach (var project in projects)
-        {
-            project.Skills = _relations.GetRelatedSkillsOf(project);
-        }
-        return projects;
+        return _projectsCRUD.GetAll();
     }
 
-    [HttpGet("{id}", Name = "GetProject")]
+    [HttpGet("{id}/skills", Name = "GetProject")]
     public ActionResult<Project> Get(int id)
     {
         try
         {
-            var project = _relations.GetProjectById(id);
-            if (project is null)
+            var project = _projectsCRUD.GetById(id);
+            if(project is null) 
             {
                 return NotFound($"Project with Id {id} not found.");
             }
-            project.Skills = _relations.GetRelatedSkillsOf(project);
+
             return Ok(project);
         }
-        catch (Exception e)
+        catch (Exception e) 
         {
             return StatusCode(500, $"Internal server error: {e.Message}");
         }
     }
 
-    [HttpPost(Name = "CreateProjet")]
-    public void Create(Project project)
+    [HttpPost(Name = "CreateProject")]
+    public void Create(ProjectCreateDto dto)
     {
-        _projectsCRUD.Create(project);
+        _projectsCRUD.Create(
+            new Project
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                StartDate = dto.StartDate,
+                Title = dto.Title,
+                Type = dto.Type,
+                EndDate = dto.EndDate,
+            } 
+        );
     }
 
     [HttpPut(Name = "UpdateProject")]
-    public void Update(Project project)
+    public void Update(ProjectUpdateDto dto)
     {
-        _projectsCRUD.Update(project);
+        _projectsCRUD.Update(
+            new Project
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                StartDate = dto.StartDate,
+                Title = dto.Title,
+                Type = dto.Type,
+                EndDate = dto.EndDate,
+            } 
+        );
+    }
+
+    [HttpPut("{projectId}/skills/{skillId}", Name = "UpdateProjectSkillRelationship")]
+    public IActionResult ProjectSkillUpdate(int projectId, int skillId)
+    {
+        try
+        {
+            var project = _projectsCRUD.CreateRelationship(projectId, skillId);
+            if(project is null) 
+            {
+                return NotFound($"Erro ao criar relacionamento. Projeto ou Skill nao encontrada.");
+            }
+
+            return Ok(project);
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
     }
 
     [HttpDelete("{id}", Name = "DeleteProject")]
     public void Delete(int id)
     {
         _projectsCRUD.Delete(id);
+    }
+
+    [HttpDelete("{projectId}/skills/{skillId}", Name = "DeleteProjectSkillRelationship")]
+    public IActionResult ProjectSkillDelete(int projectId, int skillId)
+    {
+        try
+        {
+            var project = _projectsCRUD.DeleteRelationship(projectId, skillId);
+            if(project is null) 
+            {
+                return NotFound($"Erro ao deletar relacionamento. Projeto ou Skill nao encontrada.");
+            }
+
+            return Ok(project);
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
     }
 }
