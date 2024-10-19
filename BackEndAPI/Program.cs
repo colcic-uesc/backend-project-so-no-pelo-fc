@@ -2,6 +2,7 @@ using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Service.DataBase.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using BackEndAPI.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<RequestLoggingMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -40,3 +43,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
