@@ -1982,11 +1982,6 @@
       "BackEndAPI.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Microsoft.AspnetCore.Http": "2.2.2",
-          "Microsoft.Extensions.Configuration": "8.0.0",
-          "Microsoft.Extensions.Logging": "8.0.1"
-        },
         "compile": {
           "bin/placeholder/BackEndAPI.Core.dll": {}
         },
@@ -5287,27 +5282,29 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "BackEndAPI.Service >= 1.0.0",
+      "Microsoft.AspnetCore.Http >= 2.2.2",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.10",
+      "Microsoft.Extensions.Configuration >= 8.0.0",
       "Microsoft.Extensions.Logging >= 8.0.1",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\luizf\\.nuget\\packages\\": {}
+    "C:\\Users\\Vitor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
       "projectName": "BackEndAPI",
-      "projectPath": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
-      "packagesPath": "C:\\Users\\luizf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI\\obj\\",
+      "projectPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\BackEndAPI.csproj",
+      "packagesPath": "C:\\Users\\Vitor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\luizf\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Vitor\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5319,8 +5316,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
-              "projectPath": "C:\\Users\\luizf\\Documents\\Faculdade\\Web\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj"
+            "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj": {
+              "projectPath": "C:\\Users\\Vitor\\OneDrive\\Documentos\\ProjetoWeb\\backend-project-so-no-pelo-fc\\BackEndAPI.Service\\BackEndAPI.Service.csproj"
             }
           }
         }
@@ -5340,6 +5337,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Microsoft.AspnetCore.Http": {
+            "target": "Package",
+            "version": "[2.2.2, )"
+          },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
@@ -5353,6 +5354,10 @@
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[8.0.10, )"
+          },
+          "Microsoft.Extensions.Configuration": {
+            "target": "Package",
+            "version": "[8.0.0, )"
           },
           "Microsoft.Extensions.Logging": {
             "target": "Package",
@@ -5382,7 +5387,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

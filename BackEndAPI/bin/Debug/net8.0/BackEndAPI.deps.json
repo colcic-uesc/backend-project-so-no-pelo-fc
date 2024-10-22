@@ -9,9 +9,11 @@
       "BackEndAPI/1.0.0": {
         "dependencies": {
           "BackEndAPI.Service": "1.0.0",
+          "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.EntityFrameworkCore.Design": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.10",
+          "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.Logging": "8.0.1",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
@@ -1186,16 +1188,8 @@
         }
       },
       "BackEndAPI.Core/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Http": "2.2.2",
-          "Microsoft.Extensions.Configuration": "8.0.0",
-          "Microsoft.Extensions.Logging": "8.0.1"
-        },
         "runtime": {
-          "BackEndAPI.Core.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "BackEndAPI.Core.dll": {}
         }
       },
       "BackEndAPI.Service/1.0.0": {
@@ -1207,10 +1201,7 @@
           "Microsoft.Extensions.Configuration.Json": "8.0.1"
         },
         "runtime": {
-          "BackEndAPI.Service.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "BackEndAPI.Service.dll": {}
         }
       }
     }
