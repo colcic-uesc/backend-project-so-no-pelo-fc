@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata;
 using BackEndAPI.Core;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,17 +11,31 @@ public class ApiDBContext : DbContext
     public DbSet<Project> Projects { get; set; }
     public DbSet<Professor> Professors { get; set; }
     public DbSet<Skill> Skills { get; set; }
+    public DbSet<User> Users { get; set; }
 
     public ApiDBContext(DbContextOptions<ApiDBContext> options)
         :base(options)
     {}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+    {   
+        modelBuilder.Entity<User>().HasKey(x => x.Id);;
+
         modelBuilder.Entity<Student>().HasKey(x => x.Id);
+        modelBuilder.Entity<Student>()
+                    .HasOne<User>() 
+                    .WithMany() 
+                    .HasForeignKey(s => s.UserId)
+                    .IsRequired();
+
         modelBuilder.Entity<Professor>().HasKey(x => x.Id);
+        modelBuilder.Entity<Professor>()
+                    .HasOne<User>() 
+                    .WithMany() 
+                    .HasForeignKey(s => s.UserId)
+                    .IsRequired(); 
+
         modelBuilder.Entity<Project>().HasKey(x => x.Id);
         modelBuilder.Entity<Skill>().HasKey(x => x.Id);
-
         modelBuilder.Entity<Project>()
                     .HasMany(s => s.Skills)
                     .WithMany(p => p.Projects)

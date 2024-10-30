@@ -231,16 +231,16 @@ public static class ModelBuilderExtensions
                     );
     }
 
-   /* public static void SeedProjectSkill (this ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Project>()
-                    .HasMany(s => s.Skills)
-                    .WithMany(p => p.Projects)
-                    .UsingEntity(j => j.HasData(
-                        new { ProjectsId = 1, SkillsId = 2 },
-                        new { ProjectsId = 1, SkillsId = 5 },
-                        new { ProjectsId = 3, SkillsId = 7 },
-                        new { ProjectsId = 4, SkillsId = 4 }
-                    ));
-    }*/
+//    public static void SeedProjectSkill (this ModelBuilder modelBuilder)
+//     {
+//         modelBuilder.Entity<Project>()
+//                     .HasMany(s => s.Skills)
+//                     .WithMany(p => p.Projects)
+//                     .UsingEntity(j => j.HasData(
+//                         new { ProjectsId = 1, SkillsId = 2 },
+//                         new { ProjectsId = 1, SkillsId = 5 },
+//                         new { ProjectsId = 3, SkillsId = 7 },
+//                         new { ProjectsId = 4, SkillsId = 4 }
+//                     ));
+//     }
 }

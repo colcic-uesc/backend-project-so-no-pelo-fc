@@ -3,6 +3,7 @@ using BackEndAPI.Service.DataBase.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using BackEndAPI.Middlewares;
+using BackEndAPI.Service.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IProjectCRUD, ProjectCRUD>();
 builder.Services.AddScoped<IProfessorCRUD, ProfessorCRUD>();
 builder.Services.AddScoped<IStudentCRUD, StudentCRUD>();
 builder.Services.AddScoped<ISkillCRUD, SkillCRUD>();
+builder.Services.AddScoped<AuthService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

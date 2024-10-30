@@ -37,7 +37,7 @@ namespace BackEndAPI.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Professors");
+                    b.ToTable("Professors", (string)null);
 
                     b.HasData(
                         new
@@ -97,7 +97,7 @@ namespace BackEndAPI.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", (string)null);
 
                     b.HasData(
                         new
@@ -170,7 +170,7 @@ namespace BackEndAPI.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skills");
+                    b.ToTable("Skills", (string)null);
 
                     b.HasData(
                         new
@@ -258,7 +258,7 @@ namespace BackEndAPI.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
 
                     b.HasData(
                         new
@@ -329,7 +329,7 @@ namespace BackEndAPI.Service.Migrations
 
                     b.HasIndex("SkillsId");
 
-                    b.ToTable("ProjectSkill");
+                    b.ToTable("ProjectSkill", (string)null);
 
                     b.HasData(
                         new

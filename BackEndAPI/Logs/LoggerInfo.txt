@@ -1,9 +1,9 @@
 Requisição recebida nº: 1
 IP do cliente: 127.0.0.1
 Possui JWT: False
-Data e Hora: 22/10/2024 18:53:03
-Método HTTP: GET
-URL da requisição: /api/Professors
-Tempo total de processamento: 540ms
+Data e Hora: 30/10/2024 22:18:50
+Método HTTP: POST
+URL da requisição: /api/Auth/login
+Tempo total de processamento: 72ms
 
 
