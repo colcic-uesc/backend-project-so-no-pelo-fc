@@ -1,6 +1,7 @@
 using System;
 using BackEndAPI.Core;
 using BackEndAPI.Service.DataBase.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackEndAPI.Service.DataBase.Entities;
 
@@ -27,12 +28,13 @@ public class ProfessorCRUD : IProfessorCRUD
 
     public IEnumerable<Professor> GetAll()
     {
-        return _context.Professors;
+        return _context.Professors.Include("User");
     }
 
     public Professor? GetById(int id)
     {   
-        var professor = _context.Professors.Find(id) ?? throw new Exception("Professor not found");
+
+        var professor = _context.Professors.Include("User").First(p => p.Id == id) ?? throw new Exception("Professor not found");
         return professor;
     }
 

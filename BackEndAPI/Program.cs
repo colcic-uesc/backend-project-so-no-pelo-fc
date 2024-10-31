@@ -20,6 +20,7 @@ builder.Services.AddScoped<IProjectCRUD, ProjectCRUD>();
 builder.Services.AddScoped<IProfessorCRUD, ProfessorCRUD>();
 builder.Services.AddScoped<IStudentCRUD, StudentCRUD>();
 builder.Services.AddScoped<ISkillCRUD, SkillCRUD>();
+builder.Services.AddScoped<IUserCRUD, UserCRUD>();
 builder.Services.AddScoped<AuthService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

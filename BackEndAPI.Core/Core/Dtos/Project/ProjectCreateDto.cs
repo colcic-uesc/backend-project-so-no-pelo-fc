@@ -1,4 +1,4 @@
-namespace BackEndAPI.Core.Dtos;
+namespace BackEndAPI.Core.Dtos.Project;
 
 public class ProjectCreateDto
 {

@@ -1,9 +1,9 @@
-Requisição recebida nº: 1
-IP do cliente: 127.0.0.1
+Requisição recebida nº: 4
+IP do cliente: ::1
 Possui JWT: False
-Data e Hora: 30/10/2024 22:18:50
+Data e Hora: 31/10/2024 03:11:52
 Método HTTP: POST
 URL da requisição: /api/Auth/login
-Tempo total de processamento: 72ms
+Tempo total de processamento: 13ms
 
 

@@ -14,7 +14,8 @@ public static class ModelBuilderExtensions
                 Name = "Dr. John Smith",
                 Email = "john.smith@university.edu",
                 Department = "Computer Science",
-                Bio = "Specializes in artificial intelligence and machine learning with over 20 years of research experience."
+                Bio = "Specializes in artificial intelligence and machine learning with over 20 years of research experience.",
+                UserId = 4,
             },
             new Professor
             {
@@ -22,7 +23,8 @@ public static class ModelBuilderExtensions
                 Name = "Dr. Jane Doe",
                 Email = "jane.doe@university.edu",
                 Department = "Physics",
-                Bio = "Expert in quantum mechanics and particle physics, leading numerous research projects in theoretical physics."
+                Bio = "Expert in quantum mechanics and particle physics, leading numerous research projects in theoretical physics.",
+                UserId = 5,
             },
             new Professor
             {
@@ -30,15 +32,8 @@ public static class ModelBuilderExtensions
                 Name = "Dr. Albert Johnson",
                 Email = "albert.johnson@university.edu",
                 Department = "Mathematics",
-                Bio = "Mathematical analysis and topology researcher, known for contributions to abstract algebra and number theory."
-            },
-            new Professor
-            {
-                Id = 4,
-                Name = "Dr. Emily Davis",
-                Email = "emily.davis@university.edu",
-                Department = "Biology",
-                Bio = "Researcher in molecular biology and genetics, with a focus on DNA sequencing and genome editing techniques."
+                Bio = "Mathematical analysis and topology researcher, known for contributions to abstract algebra and number theory.",
+                UserId = 6,
             }
         );
     }
@@ -110,56 +105,32 @@ public static class ModelBuilderExtensions
             new Student
             {
                 Id = 1,
-                Registration = "2023001",
-                Name = "Alice Johnson",
-                Email = "alice.johnson@example.com",
+                Registration = "2021001",
+                Name = "Vitor Pires Rocha",
+                Email = "valter@example.com",
                 Course = "Computer Science",
-                Bio = "Enthusiastic student with a passion for software development and AI."
+                Bio = "Enthusiastic student with a passion for software development and girls with daddy issues.",
+                UserId = 1
             },
             new Student
             {
                 Id = 2,
-                Registration = "2023002",
-                Name = "Michael Smith",
-                Email = "michael.smith@example.com",
-                Course = "Electrical Engineering",
-                Bio = "Focused on embedded systems and renewable energy technologies."
+                Registration = "2021002",
+                Name = "Luiz Palhacadas",
+                Email = "luizinho@example.com",
+                Course = "Computer Science",
+                Bio = "Focused on embedded systems and renewable energy technologies.",
+                UserId = 2
             },
             new Student
             {
                 Id = 3,
-                Registration = "2023003",
-                Name = "Sophia Brown",
-                Email = "sophia.brown@example.com",
-                Course = "Business Administration",
-                Bio = "Aiming to leverage technology for improving business operations."
-            },
-            new Student
-            {
-                Id = 4,
-                Registration = "2023004",
-                Name = "James Wilson",
-                Email = "james.wilson@example.com",
-                Course = "Physics",
-                Bio = "Keen interest in quantum mechanics and astrophysics."
-            },
-            new Student
-            {
-                Id = 5,
-                Registration = "2023005",
-                Name = "Emma Davis",
-                Email = "emma.davis@example.com",
-                Course = "Information Technology",
-                Bio = "Passionate about cybersecurity and network security."
-            },
-            new Student
-            {
-                Id = 6,
-                Registration = "2023006",
-                Name = "Oliver Martinez",
-                Email = "oliver.martinez@example.com",
-                Course = "Data Science",
-                Bio = "Aiming to extract valuable insights from data using machine learning."
+                Registration = "2021003",
+                Name = "Vitor Coito",
+                Email = "coitinho@example.com",
+                Course = "Computer Science",
+                Bio = "Aiming to leverage technology for improving business operations.",
+                UserId = 3,
             }
         );
     }
@@ -231,16 +202,52 @@ public static class ModelBuilderExtensions
                     );
     }
 
-//    public static void SeedProjectSkill (this ModelBuilder modelBuilder)
-//     {
-//         modelBuilder.Entity<Project>()
-//                     .HasMany(s => s.Skills)
-//                     .WithMany(p => p.Projects)
-//                     .UsingEntity(j => j.HasData(
-//                         new { ProjectsId = 1, SkillsId = 2 },
-//                         new { ProjectsId = 1, SkillsId = 5 },
-//                         new { ProjectsId = 3, SkillsId = 7 },
-//                         new { ProjectsId = 4, SkillsId = 4 }
-//                     ));
-//     }
+    public static void SeedUsers(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<User>()
+                    .HasData(
+                        new User
+                        {
+                            Id = 1,
+                            Username = "Valter Delas",
+                            Password = "xota",
+                            Rules = "student"
+                        },
+                        new User
+                        {
+                            Id = 2,
+                            Username = "Luiz Palhacadas",
+                            Password = "adm",
+                            Rules = "student"
+                        },
+                        new User
+                        {
+                            Id = 3,
+                            Username = "Coito",
+                            Password = "batata",
+                            Rules = "student"
+                        },
+                        new User
+                        {
+                            Id = 4,
+                            Username = "Smith",
+                            Password = "sim",
+                            Rules = "prof"
+                        },
+                        new User
+                        {
+                            Id = 5,
+                            Username = "Doe",
+                            Password = "sim",
+                            Rules = "prof"
+                        },
+                        new User
+                        {
+                            Id = 6,
+                            Username = "Albert",
+                            Password = "sim",
+                            Rules = "prof"
+                        }
+                    );
+    }
 }

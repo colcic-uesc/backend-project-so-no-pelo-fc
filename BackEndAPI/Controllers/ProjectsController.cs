@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
-using BackEndAPI.Core.Dtos;
+using BackEndAPI.Core.Dtos.Project;
 
 namespace BackEndAPI.Controllers;
 

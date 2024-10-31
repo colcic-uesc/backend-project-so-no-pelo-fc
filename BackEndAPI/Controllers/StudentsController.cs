@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
+using BackEndAPI.Core.Dtos.User;
 
 namespace BackEndAPI.Controllers;
 
@@ -18,13 +19,15 @@ public class StudentsController : ControllerBase
     }
 
     [HttpGet(Name = "GetStudents")]
-    public IEnumerable<Student> Get()
+    public IEnumerable<StudentGetDto> Get()
     {
-        return _studentCRUD.GetAll();
+        var students = _studentCRUD.GetAll()
+                                    .Select(StudentObjectToGetDto);
+        return students;
     }
 
     [HttpGet("register/{registration}", Name = "GetStudentByRegistration")]
-    public ActionResult<Student> Get(string registration)
+    public ActionResult<StudentGetDto> Get(string registration)
     {
         var student = _studentCRUD.GetByRegistration(registration);
         if(student is null) 
@@ -32,11 +35,11 @@ public class StudentsController : ControllerBase
             return NotFound($"Student with registration {registration} not found.");
         }
 
-        return Ok(student);
+        return Ok(StudentObjectToGetDto(student));
     }
 
     [HttpGet("{id}", Name = "GetStudent")]
-    public ActionResult<Student> Get(int id)
+    public ActionResult<StudentGetDto> Get(int id)
     {
         try
         {
@@ -46,7 +49,7 @@ public class StudentsController : ControllerBase
                 return NotFound($"Student with Id {id} not found.");
             }
 
-            return Ok(student);
+            return Ok(StudentObjectToGetDto(student));
         }
         catch (Exception e) 
         {
@@ -55,20 +58,62 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPost(Name = "CreateStudent")]
-    public void Create(Student student)
+    public void Create(StudentCreateDto dto)
     {
-        _studentCRUD.Create(student);
+        _studentCRUD.Create(
+            new Student {
+                Bio  =dto.Bio,
+                Course =dto.Course,
+                Name = dto.Name,
+                Email = dto.Email,
+                Registration = dto.Registration,
+                User = new User {
+                    Username = dto.User.Username,
+                    Password = dto.User.Password,
+                    Rules = dto.User.Rules
+                }
+            }
+        );
     }
 
-    [HttpPut(Name = "UpdateStudent")]
-    public void Update(Student student)
+    [HttpPut("{id}", Name = "UpdateStudent")]
+    public void Update(int id, [FromBody] StudentUpdateDto dto)
     {
-        _studentCRUD.Update(student);
+        _studentCRUD.Update(
+            new Student {
+                Id = id,
+                Bio = dto.Bio,
+                Course = dto.Course,
+                Name = dto.Name,
+                Email = dto.Email,
+                Registration = dto.Registration,
+                User = new User {
+                    Username = dto.User.Username,
+                    Rules = dto.User.Rules
+                }
+            }
+        );
     }
 
     [HttpDelete("{id}", Name = "DeleteStudent")]
     public void Delete(int id)
     {
         _studentCRUD.Delete(id);
+    }
+
+    private static StudentGetDto StudentObjectToGetDto(Student student)
+    {
+        return new StudentGetDto {
+            Id = student.Id,
+            Bio  =student.Bio,
+            Course =student.Course,
+            Name = student.Name,
+            Email = student.Email,
+            Registration = student.Registration,
+            User = new UserGetDto {
+                Username = student.User.Username,
+                Rules = student.User.Rules
+            }
+        };
     }
 }

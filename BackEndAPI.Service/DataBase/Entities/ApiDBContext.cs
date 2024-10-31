@@ -18,24 +18,25 @@ public class ApiDBContext : DbContext
     {}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {   
-        modelBuilder.Entity<User>().HasKey(x => x.Id);;
-
+        modelBuilder.Entity<User>().HasKey(x => x.Id);
         modelBuilder.Entity<Student>().HasKey(x => x.Id);
-        modelBuilder.Entity<Student>()
-                    .HasOne<User>() 
-                    .WithMany() 
-                    .HasForeignKey(s => s.UserId)
-                    .IsRequired();
-
         modelBuilder.Entity<Professor>().HasKey(x => x.Id);
-        modelBuilder.Entity<Professor>()
-                    .HasOne<User>() 
-                    .WithMany() 
-                    .HasForeignKey(s => s.UserId)
-                    .IsRequired(); 
-
         modelBuilder.Entity<Project>().HasKey(x => x.Id);
         modelBuilder.Entity<Skill>().HasKey(x => x.Id);
+
+        // Configure one-to-one relationship between User and Professor
+        modelBuilder.Entity<User>()
+                    .HasOne(u => u.Professor)
+                    .WithOne(p => p.User)
+                    .HasForeignKey<Professor>(p => p.UserId);
+                    
+         // Configure one-to-one relationship between User and Student
+        modelBuilder.Entity<User>()
+                    .HasOne(u => u.Student)
+                    .WithOne(p => p.User)
+                    .HasForeignKey<Student>(p => p.UserId);
+       
+
         modelBuilder.Entity<Project>()
                     .HasMany(s => s.Skills)
                     .WithMany(p => p.Projects)
@@ -46,6 +47,7 @@ public class ApiDBContext : DbContext
                         new { ProjectsId = 4, SkillsId = 4 }
                     ));
                     
+        modelBuilder.SeedUsers();
         modelBuilder.SeedProfessors();
         modelBuilder.SeedStudents();
         modelBuilder.SeedProjects();

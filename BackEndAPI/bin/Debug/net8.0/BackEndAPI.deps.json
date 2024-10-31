@@ -1178,7 +1178,10 @@
       },
       "BackEndAPI.Core/1.0.0": {
         "runtime": {
-          "BackEndAPI.Core.dll": {}
+          "BackEndAPI.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "BackEndAPI.Service/1.0.0": {
@@ -1192,7 +1195,10 @@
           "System.IdentityModel.Tokens.Jwt": "8.1.2"
         },
         "runtime": {
-          "BackEndAPI.Service.dll": {}
+          "BackEndAPI.Service.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

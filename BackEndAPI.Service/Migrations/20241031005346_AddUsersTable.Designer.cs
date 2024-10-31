@@ -3,6 +3,7 @@ using System;
 using BackEndAPI.Service.DataBase.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEndAPI.Service.Migrations
 {
     [DbContext(typeof(ApiDBContext))]
-    partial class ApiDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241031005346_AddUsersTable")]
+    partial class AddUsersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
@@ -35,13 +38,7 @@ namespace BackEndAPI.Service.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Professors");
 
@@ -52,8 +49,7 @@ namespace BackEndAPI.Service.Migrations
                             Bio = "Specializes in artificial intelligence and machine learning with over 20 years of research experience.",
                             Department = "Computer Science",
                             Email = "john.smith@university.edu",
-                            Name = "Dr. John Smith",
-                            UserId = 4
+                            Name = "Dr. John Smith"
                         },
                         new
                         {
@@ -61,8 +57,7 @@ namespace BackEndAPI.Service.Migrations
                             Bio = "Expert in quantum mechanics and particle physics, leading numerous research projects in theoretical physics.",
                             Department = "Physics",
                             Email = "jane.doe@university.edu",
-                            Name = "Dr. Jane Doe",
-                            UserId = 5
+                            Name = "Dr. Jane Doe"
                         },
                         new
                         {
@@ -70,8 +65,15 @@ namespace BackEndAPI.Service.Migrations
                             Bio = "Mathematical analysis and topology researcher, known for contributions to abstract algebra and number theory.",
                             Department = "Mathematics",
                             Email = "albert.johnson@university.edu",
-                            Name = "Dr. Albert Johnson",
-                            UserId = 6
+                            Name = "Dr. Albert Johnson"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Bio = "Researcher in molecular biology and genetics, with a focus on DNA sequencing and genome editing techniques.",
+                            Department = "Biology",
+                            Email = "emily.davis@university.edu",
+                            Name = "Dr. Emily Davis"
                         });
                 });
 
@@ -257,13 +259,7 @@ namespace BackEndAPI.Service.Migrations
                     b.Property<string>("Registration")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Students");
 
@@ -271,32 +267,56 @@ namespace BackEndAPI.Service.Migrations
                         new
                         {
                             Id = 1,
-                            Bio = "Enthusiastic student with a passion for software development and girls with daddy issues.",
+                            Bio = "Enthusiastic student with a passion for software development and AI.",
                             Course = "Computer Science",
-                            Email = "valter@example.com",
-                            Name = "Vitor Pires Rocha",
-                            Registration = "2021001",
-                            UserId = 1
+                            Email = "alice.johnson@example.com",
+                            Name = "Alice Johnson",
+                            Registration = "2023001"
                         },
                         new
                         {
                             Id = 2,
                             Bio = "Focused on embedded systems and renewable energy technologies.",
-                            Course = "Computer Science",
-                            Email = "luizinho@example.com",
-                            Name = "Luiz Palhacadas",
-                            Registration = "2021002",
-                            UserId = 2
+                            Course = "Electrical Engineering",
+                            Email = "michael.smith@example.com",
+                            Name = "Michael Smith",
+                            Registration = "2023002"
                         },
                         new
                         {
                             Id = 3,
                             Bio = "Aiming to leverage technology for improving business operations.",
-                            Course = "Computer Science",
-                            Email = "coitinho@example.com",
-                            Name = "Vitor Coito",
-                            Registration = "2021003",
-                            UserId = 3
+                            Course = "Business Administration",
+                            Email = "sophia.brown@example.com",
+                            Name = "Sophia Brown",
+                            Registration = "2023003"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Bio = "Keen interest in quantum mechanics and astrophysics.",
+                            Course = "Physics",
+                            Email = "james.wilson@example.com",
+                            Name = "James Wilson",
+                            Registration = "2023004"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Bio = "Passionate about cybersecurity and network security.",
+                            Course = "Information Technology",
+                            Email = "emma.davis@example.com",
+                            Name = "Emma Davis",
+                            Registration = "2023005"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Bio = "Aiming to extract valuable insights from data using machine learning.",
+                            Course = "Data Science",
+                            Email = "oliver.martinez@example.com",
+                            Name = "Oliver Martinez",
+                            Registration = "2023006"
                         });
                 });
 
@@ -318,50 +338,6 @@ namespace BackEndAPI.Service.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Password = "xota",
-                            Rules = "student",
-                            Username = "Valter Delas"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Password = "adm",
-                            Rules = "student",
-                            Username = "Luiz Palhacadas"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Password = "batata",
-                            Rules = "student",
-                            Username = "Coito"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Password = "sim",
-                            Rules = "prof",
-                            Username = "Smith"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Password = "sim",
-                            Rules = "prof",
-                            Username = "Doe"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Password = "sim",
-                            Rules = "prof",
-                            Username = "Albert"
-                        });
                 });
 
             modelBuilder.Entity("ProjectSkill", b =>
@@ -401,28 +377,6 @@ namespace BackEndAPI.Service.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BackEndAPI.Core.Professor", b =>
-                {
-                    b.HasOne("BackEndAPI.Core.User", "User")
-                        .WithOne("Professor")
-                        .HasForeignKey("BackEndAPI.Core.Professor", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BackEndAPI.Core.Student", b =>
-                {
-                    b.HasOne("BackEndAPI.Core.User", "User")
-                        .WithOne("Student")
-                        .HasForeignKey("BackEndAPI.Core.Student", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ProjectSkill", b =>
                 {
                     b.HasOne("BackEndAPI.Core.Project", null)
@@ -436,13 +390,6 @@ namespace BackEndAPI.Service.Migrations
                         .HasForeignKey("SkillsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BackEndAPI.Core.User", b =>
-                {
-                    b.Navigation("Professor");
-
-                    b.Navigation("Student");
                 });
 #pragma warning restore 612, 618
         }

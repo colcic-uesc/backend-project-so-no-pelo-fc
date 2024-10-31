@@ -10,4 +10,5 @@ public class Professor
     public string? Department { get; set; } 
     public string? Bio { get; set; } 
     public int UserId { get; set; }
+    public User User { get; set; } = null!;
 }
