@@ -32,13 +32,13 @@ public class UserCRUD : IUserCRUD
 
     public User? GetById(int id)
     {
-        var user = _context.Users.Find(id) ?? throw new Exception("User not found");
+        var user = _context.Users.Find(id);
         return user;
     }
 
     public User? GetByUsername(string userName)
     {
-        var user = _context.Users.FirstOrDefault(user => user.Username == userName) ?? throw new Exception("User not found");
+        var user = _context.Users.FirstOrDefault(user => user.Username == userName);
         return user;
     }
 

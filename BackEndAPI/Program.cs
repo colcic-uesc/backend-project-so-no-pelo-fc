@@ -26,6 +26,7 @@ builder.Services.AddScoped<AuthService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAuthentication();
 
 var app = builder.Build();
 
@@ -35,13 +36,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+ 
+app.UseHttpsRedirection();
+app.UseAuthorization();
 
 app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseMiddleware<AddNameVersionMiddleware>();
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.UseMiddleware<JwtTokenCheckMiddleware>();
 
 app.MapControllers();
 

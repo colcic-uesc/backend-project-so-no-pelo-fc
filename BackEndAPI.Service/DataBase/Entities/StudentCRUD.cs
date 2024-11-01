@@ -20,8 +20,8 @@ public class StudentCRUD : IStudentCRUD
 
     public void Delete(int id)
     {
-        var student = _context.Students.Find(id) ?? throw new Exception("Student not found");
-        _context.Students.Remove(student);
+        var student = _context.Students.FirstOrDefault(p => p.Id == id);
+        _context.Students.Remove(student!);
         _context.SaveChanges();
     }
 
@@ -32,13 +32,13 @@ public class StudentCRUD : IStudentCRUD
 
     public Student? GetById(int id)
     {
-        var student = _context.Students.Include("User").First(s => s.Id == id) ?? throw new Exception("Student not found");
+        var student = _context.Students.Include("User").FirstOrDefault(s => s.Id == id);
         return student;
     }
 
     public Student? GetByRegistration(string registration)
     {
-        var student = _context.Students.FirstOrDefault(s => s.Registration == registration) ?? throw new Exception("Student not found");
+        var student = _context.Students.FirstOrDefault(s => s.Registration == registration);
         return student;
     }
 

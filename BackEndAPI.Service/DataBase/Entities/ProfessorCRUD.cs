@@ -21,8 +21,8 @@ public class ProfessorCRUD : IProfessorCRUD
 
     public void Delete(int id)
     {
-        var professor = _context.Professors.Find(id) ?? throw new Exception("Professor not found");
-        _context.Professors.Remove(professor);
+        var professor = _context.Professors.FirstOrDefault(p => p.Id == id);
+        _context.Professors.Remove(professor!);
         _context.SaveChanges();
     }
 
@@ -33,8 +33,8 @@ public class ProfessorCRUD : IProfessorCRUD
 
     public Professor? GetById(int id)
     {   
-
-        var professor = _context.Professors.Include("User").First(p => p.Id == id) ?? throw new Exception("Professor not found");
+        var professor = _context.Professors.Include("User").FirstOrDefault(p => p.Id == id);
+        
         return professor;
     }
 
