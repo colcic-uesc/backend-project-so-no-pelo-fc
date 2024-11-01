@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using BackEndAPI.Service.DataBase.Interfaces;
 using BackEndAPI.Core;
+using BackEndAPI.Core.Dtos.User;
 
 namespace BackEndAPI.Controllers;
 
@@ -18,35 +19,38 @@ public class StudentsController : ControllerBase
     }
 
     [HttpGet(Name = "GetStudents")]
-    public IEnumerable<Student> Get()
+    public IEnumerable<StudentGetDto> Get()
     {
-        return _studentCRUD.GetAll();
+        var students = _studentCRUD.GetAll()
+                                    .Select(StudentObjectToGetDto);
+        return students;
     }
 
     [HttpGet("register/{registration}", Name = "GetStudentByRegistration")]
-    public ActionResult<Student> Get(string registration)
+    public ActionResult<StudentGetDto> Get(string registration)
     {
-        var student = _studentCRUD.GetByRegistration(registration);
-        if(student is null) 
+        try
         {
-            return NotFound($"Student with registration {registration} not found.");
-        }
+            var student = _studentCRUD.GetByRegistration(registration);
+            if(student is null) return NotFound($"Student with registration {registration} not found.");
 
-        return Ok(student);
+            return Ok(StudentObjectToGetDto(student));
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
     }
 
     [HttpGet("{id}", Name = "GetStudent")]
-    public ActionResult<Student> Get(int id)
+    public ActionResult<StudentGetDto> Get(int id)
     {
         try
         {
             var student = _studentCRUD.GetById(id);
-            if(student is null) 
-            {
-                return NotFound($"Student with Id {id} not found.");
-            }
-
-            return Ok(student);
+            if(student is null) return NotFound($"Student with Id {id} not found.");
+        
+            return Ok(StudentObjectToGetDto(student));
         }
         catch (Exception e) 
         {
@@ -55,20 +59,93 @@ public class StudentsController : ControllerBase
     }
 
     [HttpPost(Name = "CreateStudent")]
-    public void Create(Student student)
+    public IActionResult Create(StudentCreateDto dto)
     {
-        _studentCRUD.Create(student);
+        try
+        {
+            _studentCRUD.Create(
+                new Student {
+                    Bio  =dto.Bio,
+                    Course =dto.Course,
+                    Name = dto.Name,
+                    Email = dto.Email,
+                    Registration = dto.Registration,
+                    User = new User {
+                        Username = dto.User.Username,
+                        Password = dto.User.Password,
+                        Rules = dto.User.Rules
+                    }
+                }
+            );
+
+            return Created();
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
+        
     }
 
-    [HttpPut(Name = "UpdateStudent")]
-    public void Update(Student student)
+    [HttpPut("{id}", Name = "UpdateStudent")]
+    public IActionResult Update(int id, [FromBody] StudentUpdateDto dto)
     {
-        _studentCRUD.Update(student);
+        try
+        {
+            if(_studentCRUD.GetById(id) is null) return NotFound();
+
+            _studentCRUD.Update(
+                new Student {
+                    Id = id,
+                    Bio = dto.Bio,
+                    Course = dto.Course,
+                    Name = dto.Name,
+                    Email = dto.Email,
+                    Registration = dto.Registration,
+                    User = new User {
+                        Username = dto.User.Username,
+                        Rules = dto.User.Rules
+                    }
+                }
+            );
+
+            return NoContent();
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
+        
     }
 
     [HttpDelete("{id}", Name = "DeleteStudent")]
-    public void Delete(int id)
+    public IActionResult Delete(int id)
+    { 
+        try
+        {
+            if(_studentCRUD.GetById(id) is null) return NotFound();
+            _studentCRUD.Delete(id);
+            return NoContent();
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, $"Internal server error: {e.Message}");
+        }
+    }
+
+    private static StudentGetDto StudentObjectToGetDto(Student student)
     {
-        _studentCRUD.Delete(id);
+        return new StudentGetDto {
+            Id = student.Id,
+            Bio  =student.Bio,
+            Course =student.Course,
+            Name = student.Name,
+            Email = student.Email,
+            Registration = student.Registration,
+            User = new UserGetDto {
+                Username = student.User.Username,
+                Rules = student.User.Rules
+            }
+        };
     }
 }

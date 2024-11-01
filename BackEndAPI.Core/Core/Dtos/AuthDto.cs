@@ -1,8 +1,7 @@
-namespace BackEndAPI.Core.Dtos
+namespace BackEndAPI.Core.Dtos;
+
+public class AuthDto
 {
-    public class AuthDto
-    {
-        public string? Username { get; set; }
-        public string? Password { get; set; }
-    }
+    public string? Username { get; set; }
+    public string? Password { get; set; }
 }

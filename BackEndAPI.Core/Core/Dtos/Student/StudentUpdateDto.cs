@@ -1,15 +1,13 @@
-using System;
+using BackEndAPI.Core.Dtos.User;
 
 namespace BackEndAPI.Core;
 
-public class Student
+public class StudentUpdateDto
 {
-    public int Id { get ; set; }
     public string? Registration { get; set; } 
     public string? Name { get ; set; } 
     public string? Email { get; set; } 
     public string? Course { get; set; } 
     public string? Bio { get; set; } 
-    public int UserId { get; set; }
-    public User User { get; set; } = null!;
+    public UserGetDto User { get; set; } = null!;
 }
