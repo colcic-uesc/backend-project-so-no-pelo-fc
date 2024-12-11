@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Cadastro</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="listagem.html">Listagem</a></li>
+                <li><a href="formulario.html">Formulário</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form id="myForm">
+            <h2>Cadastro de Aluno:</h2>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" required>
+
+            <label for="fone">Telefone:</label>
+            <input type="text" id="fone" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" required>
+
+            <label for="senha">Confirme a Senha:</label>
+            <input type="password" id="senha" required>
+
+
+            <label>Gênero:</label>
+            <div class="options">
+                <label>
+                    <input type="radio" name="genero" value="masculino"> Masculino
+                </label>
+                <label>
+                    <input type="radio" name="genero" value="feminino"> Feminino
+                </label>
+            </div>
+        
+            
+            <label>Interesses:</label>
+            <div class="options">
+                <label>
+                    <input type="checkbox" name="interesses" value="tecnologia"> Análise de Dados
+                </label>
+                <label>
+                    <input type="checkbox" name="interesses" value="esporte"> Front-End
+                </label>
+                <label>
+                    <input type="checkbox" name="interesses" value="esporte"> Back-End
+                </label>
+                <label>
+                    <input type="checkbox" name="interesses" value="esporte"> Ganhar sem trabalhar
+                </label>
+            </div>
+   
+            
+            <label for="area">Área de Atuação:</label>
+            <select id="area" required>
+                <option value="">Selecione</option>
+                <option value="dev">Desenvolvimento</option>
+                <option value="design">Design</option>
+            </select>
+
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 - Desenvolvido por Luiz Rosário, Vítor Coutinho e Vitor Píres</p>
+    </footer>
+</body>
+</html>
