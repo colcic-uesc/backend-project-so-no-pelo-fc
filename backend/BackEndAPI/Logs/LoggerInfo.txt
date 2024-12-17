@@ -1,9 +1,9 @@
-Requisição recebida nº: 13
+Requisição recebida nº: 107
 IP do cliente: ::1
 Possui JWT: False
-Data e Hora: 01/11/2024 23:57:57
+Data e Hora: 17/12/2024 02:52:53
 Método HTTP: GET
-URL da requisição: /api/Professors
-Tempo total de processamento: 10ms
+URL da requisição: /api/Students
+Tempo total de processamento: 0ms
 
 

@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 20px;
+  text-align: left;
+}
+
+input {
+  margin: 5px;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+}

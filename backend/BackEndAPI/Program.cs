@@ -28,6 +28,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication();
 
+builder.Services.AddCors(options => {
+            options.AddPolicy("AllowReactApp", policy => {
+                policy.WithOrigins(builder.Configuration.GetValue<string>("ReactAppUrl")!)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,6 +44,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowReactApp");
  
 app.UseHttpsRedirection();
 app.UseAuthorization();

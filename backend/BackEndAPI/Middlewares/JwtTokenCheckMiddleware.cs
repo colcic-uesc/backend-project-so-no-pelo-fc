@@ -14,48 +14,53 @@ public class JwtTokenCheckMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        // this a dog shit solution, should have its own middlware
+        // Skip login path
         if (context.Request.Path.Equals("/api/auth/login", StringComparison.OrdinalIgnoreCase))
         {
             await _next(context);
             return;
         }
 
-        if(!context.Request.Headers.ContainsKey("Authorization"))
+        // Check if Authorization header exists
+        if (!context.Request.Headers.ContainsKey("Authorization"))
         {
-            SetAsUnauthorized(context, "Authorization Header not present.");
+            await SetAsUnauthorized(context, "Authorization Header not present.");
             return;
         }
 
         var authHeader = context.Request.Headers["Authorization"].ToString();
-        
-        if(!authHeader.StartsWith("Bearer: "))
+
+        // Validate the format of Authorization header
+        if (!authHeader.StartsWith("Bearer: "))
         {
-            SetAsUnauthorized(context, "Authorization Header has an invalid format.");
+            await SetAsUnauthorized(context, "Authorization Header has an invalid format.");
+            return;
         }
 
         var token = authHeader.Substring("Bearer: ".Length).Trim();
 
-        try 
+        try
         {
             var jwtHandler = new JwtSecurityTokenHandler();
-            
-            if(!jwtHandler.CanReadToken(token))
+
+            // Check if the token is readable
+            if (!jwtHandler.CanReadToken(token))
             {
-                SetAsUnauthorized(context, "Jwt has an invalid format.");
+                await SetAsUnauthorized(context, "Jwt has an invalid format.");
                 return;
             }
 
-            await _next(context);
+            await _next(context); // Only call _next if the token is valid
         }
         catch (Exception ex)
         {
-            SetAsUnauthorized(context, $"Error validating Jwt token: {ex.Message}");
+            await SetAsUnauthorized(context, $"Error validating Jwt token: {ex.Message}");
         }
-
     }
 
-    private async void SetAsUnauthorized(HttpContext context, string? message) {
+    private async Task SetAsUnauthorized(HttpContext context, string message)
+    {
+        // Prevent further processing and set status to 401
         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
         await context.Response.WriteAsync(message ?? "");
     }

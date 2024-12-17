@@ -1,9 +1,0 @@
-Requisição recebida nº: 4
-IP do cliente: ::1
-Possui JWT: False
-Data e Hora: 01/11/2024 20:43:12
-Método HTTP: DELETE
-URL da requisição: /api/students/0
-Tempo total de processamento: 11ms
-
-
